@@ -172,7 +172,9 @@ function generateImage() {
 function generateQRCode() {
     const img = document.getElementById('rorschachImage');
     const qrCodeContainer = document.getElementById('qrcode');
-    const shortURL = "https://example.com/image";  // Substitua pelo link encurtado ou simplificado
+
+    // URL completa da nova página, incluindo o caminho do repositório no GitHub Pages
+    const shortURL = `https://matsu-ki.github.io/rorschach-generator/exibirImagem.html?url=${encodeURIComponent(img.src)}`;
 
     if (shortURL) {
         qrCodeContainer.style.display = 'block';
@@ -188,6 +190,7 @@ function generateQRCode() {
         });
     }
 }
+
 
 
 </script>
