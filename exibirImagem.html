@@ -27,8 +27,8 @@
         .image {
             width: 300px;
             height: 300px;
-            transition: transform 0.1s;
-            cursor: grab;
+            transition: transform 0.1s ease-out;
+            cursor: grab; /* Cursor para indicar interação */
         }
 
         img {
@@ -47,7 +47,6 @@
     </div>
 
     <script>
-        // Função para aplicar efeito de 3D
         const image = document.querySelector('.image');
         let isDragging = false;
         let startX, startY;
@@ -56,14 +55,14 @@
             if (isDragging) {
                 const dx = e.clientX - startX;
                 const dy = e.clientY - startY;
-                const rotateX = (dy / window.innerHeight) * 40;
-                const rotateY = -(dx / window.innerWidth) * 40;
+                const rotateX = (dy / window.innerHeight) * 80; 
+                const rotateY = -(dx / window.innerWidth) * 80; 
 
                 image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             } else {
                 const x = e.clientX / window.innerWidth - 0.5;
                 const y = e.clientY / window.innerHeight - 0.5;
-                image.style.transform = `rotateX(${y * 20}deg) rotateY(${x * 20}deg)`;
+                image.style.transform = `rotateX(${y * 40}deg) rotateY(${x * 40}deg)`; 
             }
         });
 
@@ -89,8 +88,8 @@
             if (isDragging) {
                 const dx = e.touches[0].clientX - startX;
                 const dy = e.touches[0].clientY - startY;
-                const rotateX = (dy / window.innerHeight) * 40;
-                const rotateY = -(dx / window.innerWidth) * 40;
+                const rotateX = (dy / window.innerHeight) * 80;
+                const rotateY = -(dx / window.innerWidth) * 80;
 
                 image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             }
