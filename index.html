@@ -96,6 +96,10 @@
                     <option value="ansiedade">Ansiedade</option>
                     <option value="medo">Medo</option>
                     <option value="raiva">Raiva</option>
+                    <option value="alegria">Alegria</option>
+                    <option value="tristeza">Tristeza</option>
+                    <option value="surpresa">Confusão</option>
+                    <option value="amor">Amor</option>
                 </select>
             </div>
             <div class="d-grid gap-2">
@@ -115,31 +119,64 @@
 </div>
 
 <footer>
-    <p>Desenvolvido com <i class="bi bi-heart-fill"></i> por alunos do 8</p>
+    <p>Desenvolvido com <i class="bi bi-heart-fill"></i> por alunos do 8 período</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const images = [
-    "https://media.gettyimages.com/id/173895881/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=97g4dlfDLvI21mS2PNS2mvhX1iyPv19gWcM0vTZuNSw=",
-    "https://media.gettyimages.com/id/173909218/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=iEYX20rjN1DMk02Ojze6gDy_5er0EUT4pp0dYAQDKdk=",
-    "https://media.gettyimages.com/id/173853705/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=r8m8MleAX4OgSLieZYQZNHHyoyEi5XuYbgvQLPUpKyM=",
-    "https://media.gettyimages.com/id/2020760/pt/foto/an-inkblot-pattern-similar-to-those-used-in-the-rorschach-inkblot-test-a-test-used-in-psychology.jpg?s=612x612&w=0&k=20&c=oaVaubXQHK91Z4ZTztk1NTJEphDhn0J-lBawbJ1za7E=",
-    "https://media.gettyimages.com/id/584786164/pt/vetorial/teste-de-rorschach.jpg?s=612x612&w=0&k=20&c=BWjocA82iKsKKCoXVbpDY1EbbRJMLifn2pqCk9nsoRQ=",
-    "https://media.gettyimages.com/id/174967585/pt/vetorial/teste-de-rorschach-cart%C3%A3o.jpg?s=612x612&w=0&k=20&c=vhI2WCeiVFBpGJK9bWBvU5unmOUwzzkdULOO9VEtwd0=",
-    "https://media.gettyimages.com/id/174897349/pt/foto/manchas-de-tinta.jpg?s=612x612&w=0&k=20&c=LUmaj5qoAhkRFJr57xFSET9w9efm9spLaH7CmrrWYxw="
-];
+const emotionImages = {
+    "ansiedade": [
+        "https://media.gettyimages.com/id/173895881/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=97g4dlfDLvI21mS2PNS2mvhX1iyPv19gWcM0vTZuNSw=",
+        "https://media.istockphoto.com/id/1097346828/pt/foto/rorschach.jpg?s=612x612&w=0&k=20&c=sG-2wA6TnH2aVdj7GPXv9FviFB29l7msE0n6VEIskZ4=",
+        "https://media.istockphoto.com/id/172145550/pt/foto/manchas-de-tinta.jpg?s=612x612&w=0&k=20&c=U-qlrZygyKujepuctZiFzTXYcb6or_8EQC3PK-ZmlVs=",
+        "https://media.istockphoto.com/id/2158437375/pt/vetorial/rorschach-watercolor-inkblot-test-black-watercolor-rorschach-symbol-isolated-on-white.jpg?s=612x612&w=0&k=20&c=u3HP37njH2__4JR5KI_WGXSMZ497fqbSDosr8IExJLQ=",
+        "https://media.istockphoto.com/id/171326862/pt/vetorial/teste-de-rorschach-cart%C3%A3o.jpg?s=612x612&w=0&k=20&c=_zQXWHC9mOWztRkOg0LjrljvZuNTDKebPOR3TjIRgYI="
+    ],
+    "medo": [
+        "https://media.gettyimages.com/id/173909218/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=iEYX20rjN1DMk02Ojze6gDy_5er0EUT4pp0dYAQDKdk=",
+        "https://media.istockphoto.com/id/1452318262/pt/vetorial/rorschach-inkblot-test-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=eZdsiXuCxm674PZ7vEfzNz7FSRh_rkxGgsje8Cc6qMs=",
+        "https://media.istockphoto.com/id/2157422662/pt/vetorial/rorschach-inkblot-test-black-silhouette-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=euxDTiUTbn4pHTyETfhNSCDGTPZzUaac0cJLlEZUybM=",
+        "https://media.istockphoto.com/id/2157422705/pt/vetorial/rorschach-watercolor-inkblot-test-black-watercolor-rorschach-symbol-isolated-on-white.jpg?s=612x612&w=0&k=20&c=7xDbNxSN0BM66-xwJEaRQsHUcXg4alTfDSXlhZSUdLg="
+    ],
+    "raiva": [
+        "https://media.gettyimages.com/id/173853705/pt/foto/manchas-de-tinta-de-rorschach.jpg?s=612x612&w=0&k=20&c=r8m8MleAX4OgSLieZYQZNHHyoyEi5XuYbgvQLPUpKyM=",
+        "https://media.istockphoto.com/id/2157426399/pt/vetorial/rorschach-black-abstract-splash-ink-symmetrical-hand-brushed-design-geometrical-silhouette.jpg?s=612x612&w=0&k=20&c=7smIc2jTGoP2wnFiuXL1EkK6D1e_g3ENmC7rhLs8Hj0=",
+        "https://media.gettyimages.com/id/2020760/pt/foto/an-inkblot-pattern-similar-to-those-used-in-the-rorschach-inkblot-test-a-test-used-in-psychology.jpg?s=612x612&w=0&k=20&c=oaVaubXQHK91Z4ZTztk1NTJEphDhn0J-lBawbJ1za7E=",
+        "https://media.gettyimages.com/id/584786164/pt/vetorial/teste-de-rorschach.jpg?s=612x612&w=0&k=20&c=BWjocA82iKsKKCoXVbpDY1EbbRJMLifn2pqCk9nsoRQ="
+    ],
+    "tristeza": [
+        "https://media.gettyimages.com/id/174967585/pt/vetorial/teste-de-rorschach-cart%C3%A3o.jpg?s=612x612&w=0&k=20&c=vhI2WCeiVFBpGJK9bWBvU5unmOUwzzkdULOO9VEtwd0=",
+        "https://media.gettyimages.com/id/174897349/pt/foto/manchas-de-tinta.jpg?s=612x612&w=0&k=20&c=LUmaj5qoAhkRFJr57xFSET9w9efm9spLaH7CmrrWYxw=",
+        "https://media.istockphoto.com/id/2157422778/pt/vetorial/rorschach-watercolor-inkblot-test-black-watercolor-rorschach-symbol-isolated-on-white.jpg?s=612x612&w=0&k=20&c=VIjcngyuuCE_MyOiQfglzKJY14uUky2d0Q_jVlB6KgQ="
+    ],
+    "alegria": [
+        "https://media.istockphoto.com/id/1454809891/pt/vetorial/fantastic-painted-butterfly-on-white.jpg?s=612x612&w=0&k=20&c=6-3FMzGs_cAywTyqwXAAI9kWizCoheJxWliJQyFLOrY=",
+        "https://media.istockphoto.com/id/493531558/pt/vetorial/abstrato-quadro-sim%C3%A9trico-pintura-teste-psicol%C3%B3gico.jpg?s=612x612&w=0&k=20&c=Y7IzOqflpl7OPQhIx8rj79mbd2HvTYTlc_Vj6C7vgVI=",
+        "https://media.istockphoto.com/id/1454809888/pt/vetorial/fantastic-painted-butterfly-on-white.jpg?s=612x612&w=0&k=20&c=WUhygwZ5e46BwS2o4-xuHT0dH95kF_YXhXeWtpNoMdc="
+    ],
+    "surpresa": [
+        "https://media.istockphoto.com/id/135968727/pt/foto/teste-de-rorschach.jpg?s=612x612&w=0&k=20&c=hOZddDdvBooyNh1k2kYyRXHpa_qsN6IScAYgrTdy9O8=",
+        "https://media.istockphoto.com/id/1452316994/pt/foto/rorschach-inkblot-test-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=BU0AWAbExmB7KFjfQwTg_1gf5_oiFcAN3sLobKLBKnY=",
+        "https://media.istockphoto.com/id/1452318249/pt/vetorial/rorschach-inkblot-test-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=P1XEpcxnPU__ecVQAFMvsmFNw7dL7-XEb2RbiloVKGw="
+    ],
+    "amor": [
+        "https://media.istockphoto.com/id/182816219/pt/foto/manchas-de.jpg?s=612x612&w=0&k=20&c=Sjiil6tj1VoJ6g7DQt39NbX7jnM13tNtlmedtUV31qk=",
+        "https://media.istockphoto.com/id/1351707087/pt/foto/rorschach-test-inkblot.jpg?s=612x612&w=0&k=20&c=2PGiDiHBRkAnXDWrWSPbfilvrSTBtnZnZAP1qiLzkno="
+
+    ]
+};
 
 function generateImage() {
+    const selectedEmotion = document.getElementById('selectEmotion').value;
     const img = document.getElementById('rorschachImage');
     const alertError = document.getElementById('alertError');
     const qrCodeContainer = document.getElementById('qrcode');
 
-    // Seleciona uma imagem aleatória
-    const imagePath = images[Math.floor(Math.random() * images.length)];
+    const images = emotionImages[selectedEmotion];
 
-    if (imagePath) {
-        img.src = imagePath;
+    if (images) {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        img.src = images[randomIndex];
         img.style.display = 'block';
         alertError.style.display = 'none';
         qrCodeContainer.style.display = 'none';
@@ -151,29 +188,13 @@ function generateImage() {
 }
 
 function generateQRCode() {
-    const img = document.getElementById('rorschachImage');
-    const qrCodeContainer = document.getElementById('qrcode');
+    const rorschachImage = document.getElementById("rorschachImage");
+    const qrCodeContainer = document.getElementById("qrcode");
 
-    const shortURL = `https://matsu-ki.github.io/rorschach-generator/exibirImagem.html?url=${encodeURIComponent(img.src)}`;
-
-    if (shortURL) {
-        qrCodeContainer.style.display = 'block';
-        qrCodeContainer.innerHTML = "";
-
-        new QRCode(qrCodeContainer, {
-            text: shortURL,
-            width: 128,
-            height: 128,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-    }
+    qrCodeContainer.innerHTML = "";
+    new QRCode(qrCodeContainer, rorschachImage.src);
+    qrCodeContainer.style.display = "block";
 }
 </script>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
